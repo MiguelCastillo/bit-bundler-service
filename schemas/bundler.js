@@ -15,7 +15,7 @@ module.exports = buildSchema(`
 
   type Bundler {
     createBundle(modules: [Module]): String
-    getBundle(id: String) : [Result]
+    getBundle(id: String) : Result
   }
 
   type Query {

@@ -4,6 +4,23 @@ bit-bundler service
 
 # Usage
 
+## Install
+
+```
+$ git clone https://github.com/MiguelCastillo/bit-bundler-service.git
+$ cd bit-bundler-service
+$ npm install
+```
+
+## Running the service with graphiql enabled
+
+```
+$ debug=true node index.js
+```
+
+Now you can open graphiql (graphical) in your browser with `http://localhost:4000/graphql` and you can run the commands below.
+
+
 ## graphql API
 
 Query to create a bundler

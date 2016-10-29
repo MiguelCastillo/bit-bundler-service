@@ -14,7 +14,7 @@ const app = express();
 
 app.use('/graphql', graphqlHTTP({
   schema: bundlerSchema,
-  graphiql: true,
+  graphiql: process.env.debug,
   rootValue: root
 }));
 

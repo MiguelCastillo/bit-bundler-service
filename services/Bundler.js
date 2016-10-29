@@ -1,5 +1,7 @@
 const Bitbundler = require("bit-bundler");
 const jsPlugin = require("bit-loader-js");
+const extensionsPlugin = require("bit-loader-extensions");
+const builtinsPlugin = require("bit-loader-builtins");
 
 const path = require("path");
 const crypto = require("crypto");
@@ -51,8 +53,11 @@ function createBundle(options) {
         resolve: false
       }, {
         loader: {
+          baseUrl: options.cwd,
           plugins: [
-            jsPlugin()
+            extensionsPlugin(["js", "json"]),
+            jsPlugin({ extensions: ["js", "json"] }),
+            builtinsPlugin()
           ]
         }
     });

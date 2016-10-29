@@ -1,5 +1,5 @@
 # bit-bundler-service
-bit-bundler service
+[bit-bundler](https://github.com/MiguelCastillo/bit-bundler) web service with a graphql API
 
 
 # Usage

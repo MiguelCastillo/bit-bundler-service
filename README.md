@@ -1,6 +1,16 @@
 # bit-bundler-service
-[bit-bundler](https://github.com/MiguelCastillo/bit-bundler) web service with a graphql API
+[bit-bundler](https://github.com/MiguelCastillo/bit-bundler) web service with a graphql API.
 
+The service allows you to specify a list of npm modules, optionally with specific versions, and bundle them.
+
+Some of the goals are to:
+
+- Bundle github projects
+- Bundle splitting
+- Babel integration
+- Siren hypermedia responses, and more...
+
+> This is just an experiment for integrating graphql with bit-bundler.
 
 # Usage
 

@@ -23,9 +23,9 @@ Now you can open graphiql (graphical) in your browser with `http://localhost:400
 
 ## graphql API
 
-Query to create a bundler
+Query to create a bundle
 
-```
+``` javascript
 query bundler($modules: [Module]) {
   bundler {
     createBundle(modules: $modules)

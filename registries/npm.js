@@ -12,7 +12,7 @@ function getPackageInstall(packages) {
   return packages
     .map((package) => {
       return package.version ?
-        [package.name].join('@') :
+        [package.name, package.version].join('@') :
         package.name;
     });
 }

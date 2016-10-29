@@ -8,7 +8,8 @@ Some of the goals are to:
 - Bundle github projects
 - Bundle splitting
 - Babel integration
-- Siren hypermedia responses, and more...
+- Siren hypermedia responses
+- Webhooks to notify when bundles are ready, and more...
 
 > This is just an experiment for integrating graphql with bit-bundler.
 

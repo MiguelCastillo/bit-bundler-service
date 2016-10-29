@@ -5,7 +5,7 @@ function install(packages, options) {
   var env = options.env || process.env;
   var packageInstall = getPackageInstall(packages);
 
-  return exec("yarn", ["add", ...packageInstall], { cwd, env })
+  return exec("yarn", ["add", ...packageInstall], { cwd, env }).then(() => packages);
 }
 
 function getPackageInstall(packages) {

@@ -1,22 +1,27 @@
 const Bitbundler = require("bit-bundler");
+const jsPlugin = require("bit-loader-js");
+
+const path = require("path");
 const crypto = require("crypto");
 const mkdirp = require("mkdirp");
 const npmRegistry = require("../registries/npm");
+
 var cache = {};
 var pending = {};
 
 module.exports = class Bundler {
   createBundle({modules}) {
-    var id = buildHash(modules);
-    var targetDir = "cache/" + id;
+    var id = packagesHash(modules);
+    var targetDir = path.resolve("cache/" + id);
 
     if (!pending[id]) {
       // create directory to store install data
       mkdirp.sync(targetDir);
 
-      pending[id] = npmRegistry
-        .install(modules, { cwd: targetDir })
-        .then(cacheResult(id))
+      pending[id] = Promise.resolve(modules)
+        .then(installPackages({ id, cwd: targetDir }))
+        .then(createBundle({ id, cwd: targetDir }))
+        .then(cacheBundle(id))
         .then(notifyListeners(id));
     }
 
@@ -24,41 +29,71 @@ module.exports = class Bundler {
   }
 
   getBundle({id}) {
-    return {
-      id: hash
-    };
+    if (pending[id]) {
+      return pending[id].then(() => cache[id]);
+    }
+
+    return Promise.resolve(cache[id]);
   }
 }
 
-function cacheResult(id) {
-  return (result) => {
-    delete pending[id];
+function installPackages(options) {
+  return (packages) => npmRegistry.install(packages, options);
+}
+
+function createBundle(options) {
+  return (packages) => {
+    var packageNames = packages.map((package) => package.name);
+
+    return Bitbundler.bundle({
+        cwd: options.cwd,
+        src: packageNames,
+        resolve: false
+      }, {
+        loader: {
+          plugins: [
+            jsPlugin()
+          ]
+        }
+    });
+  };
+}
+
+function cacheBundle(id) {
+  return (bundlerContext) => {
+    var bundle = bundlerContext.bundle.result;
+    var hash = buildHash(bundle);
 
     cache[id] = {
       id,
-      result
+      hash,
+      bundle
     };
 
-    return result;
+    delete pending[id];
+    return bundlerContext;
   };
 }
 
 function notifyListeners(id) {
   return (result) => {
-    console.log(id, result);
     return result;
   };
 }
 
-function buildHash(modules) {
-  var moduleMessage = JSON.stringify(
-    modules
+function packagesHash(packages) {
+  var packagesMessage = JSON.stringify(
+    packages
       .slice()
       .sort((a, b) => a.name > b.name)
   );
 
+  return buildHash(packagesMessage);
+}
+
+function buildHash(message) {
   return crypto
     .createHash("sha256")
-    .update(moduleMessage)
+    .update(message)
     .digest("hex");
 }

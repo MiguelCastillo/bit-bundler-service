@@ -8,7 +8,6 @@ module.exports = buildSchema(`
 
   type Result {
     id: String!
-    name: String!
     hash: String
     bundle: String
     sourceMap: String

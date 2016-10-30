@@ -102,7 +102,7 @@ function packagesHash(packages) {
 
 function buildHash(message) {
   return crypto
-    .createHash("sha256")
+    .createHash("sha1")
     .update(message)
     .digest("hex");
 }

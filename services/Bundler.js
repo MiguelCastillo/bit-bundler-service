@@ -50,6 +50,7 @@ function createBundle(options) {
     return Bitbundler.bundle({
         cwd: options.cwd,
         src: packageNames,
+        dest: path.resolve(options.cwd, "bundle.js"),
         resolve: false
       }, {
         loader: {

@@ -59,6 +59,9 @@ function createBundle(options) {
             jsPlugin({ extensions: ["js", "json"] }),
             builtinsPlugin()
           ]
+        },
+        bundler: {
+          exportNames: true
         }
     });
   };

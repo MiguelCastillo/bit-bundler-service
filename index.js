@@ -12,10 +12,12 @@ var root = {
 
 const app = express();
 
-app.use('/graphql', graphqlHTTP({
-  schema: bundlerSchema,
-  graphiql: process.env.debug,
-  rootValue: root
-}));
+app
+  .use(express.static('cache'))
+  .use('/graphql', graphqlHTTP({
+    schema: bundlerSchema,
+    graphiql: process.env.debug,
+    rootValue: root
+  }));
 
 app.listen(4000);

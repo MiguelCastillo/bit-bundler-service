@@ -2,6 +2,8 @@ const Bitbundler = require("bit-bundler");
 const jsPlugin = require("bit-loader-js");
 const extensionsPlugin = require("bit-loader-extensions");
 const builtinsPlugin = require("bit-loader-builtins");
+const minifyjs = require("bit-bundler-minifyjs");
+const extractsm = require("bit-bundler-extractsm");
 
 const path = require("path");
 const crypto = require("crypto");
@@ -62,7 +64,11 @@ function createBundle(options) {
           ]
         },
         bundler: {
-          exportNames: true
+          exportNames: true,
+          plugins: [
+            minifyjs(),
+            extractsm()
+          ]
         }
     });
   };
@@ -70,13 +76,17 @@ function createBundle(options) {
 
 function cacheBundle(id) {
   return (bundlerContext) => {
-    var bundle = bundlerContext.bundle.result;
+    var bundle = bundlerContext.bundle.content;
+    var sourcemap = bundlerContext.bundle.sourcemap;
+
+    console.log(sourcemap);
     var hash = buildHash(bundle);
 
     cache[id] = {
       id,
       hash,
-      bundle
+      bundle,
+      sourcemap
     };
 
     delete pending[id];

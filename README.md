@@ -15,6 +15,11 @@ Some of the goals are to:
 
 # Usage
 
+## requirements
+
+- node 6. Code is written using features available.
+
+
 ## Install
 
 ```

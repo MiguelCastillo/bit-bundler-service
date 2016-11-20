@@ -10,7 +10,7 @@ module.exports = buildSchema(`
     id: String!
     hash: String
     bundle: String
-    sourceMap: String
+    sourcemap: String
   }
 
   type Bundler {

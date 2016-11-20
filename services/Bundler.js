@@ -78,8 +78,6 @@ function cacheBundle(id) {
   return (bundlerContext) => {
     var bundle = bundlerContext.bundle.content;
     var sourcemap = bundlerContext.bundle.sourcemap;
-
-    console.log(sourcemap);
     var hash = buildHash(bundle);
 
     cache[id] = {

@@ -1,7 +1,7 @@
 # bit-bundler-service
 [bit-bundler](https://github.com/MiguelCastillo/bit-bundler) web service with a graphql API.
 
-The service allows you to specify a list of npm modules, optionally with specific versions, and bundle them.
+The service allows you to specify a list of npm modules, optionally with specific versions, and bundle them. The bundles are minified and generated along with a sourcemap file.
 
 Some of the goals are to:
 
@@ -63,7 +63,7 @@ Response with the ID you use for reading the bundle
 {
   "data": {
     "bundler": {
-      "createBundle": "7eb999c44a1db7f7a6355e78af349e35a7df30f51fb93579316b1bdf669d0793"
+      "createBundle": "e91671086147d525a5887479b9ad6bfd02f0d1ad"
     }
   }
 }
@@ -74,9 +74,10 @@ Reading the bundle using the ID from the `createBundle` response.
 ``` javascript
 query getBundle {
   bundler {
-    getBundle(id: "7eb999c44a1db7f7a6355e78af349e35a7df30f51fb93579316b1bdf669d0793") {
+    getBundle(id: "e91671086147d525a5887479b9ad6bfd02f0d1ad") {
       hash,
-      bundle
+      bundle,
+      sourcemap
     }
   }
 }

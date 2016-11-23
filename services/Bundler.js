@@ -9,8 +9,8 @@ const path = require("path");
 const crypto = require("crypto");
 const mkdirp = require("mkdirp");
 const npmRegistry = require("../registries/npm");
+const repositoryStorage = require("../repository/storage");
 
-var cache = {};
 var pending = {};
 
 module.exports = class Bundler {
@@ -33,11 +33,13 @@ module.exports = class Bundler {
   }
 
   getBundle({id}) {
+    var repository = repositoryStorage.getProvider();
+
     if (pending[id]) {
-      return pending[id].then(() => cache[id]);
+      return pending[id].then(() => repository.getItem(id));
     }
 
-    return Promise.resolve(cache[id]);
+    return repository.getItem(id);
   }
 }
 
@@ -76,19 +78,20 @@ function createBundle(options) {
 
 function cacheBundle(id) {
   return (bundlerContext) => {
+    var repository = repositoryStorage.getProvider();
     var bundle = bundlerContext.bundle.content;
     var sourcemap = bundlerContext.bundle.sourcemap;
     var hash = buildHash(bundle);
 
-    cache[id] = {
-      id,
-      hash,
-      bundle,
-      sourcemap
-    };
-
-    delete pending[id];
-    return bundlerContext;
+    return repository
+      .setItem(id, {
+        id,
+        hash,
+        bundle,
+        sourcemap
+      })
+      .then(() => delete pending[id])
+      .then(() => bundlerContext);
   };
 }
 

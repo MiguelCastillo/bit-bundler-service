@@ -34,7 +34,7 @@ $ npm install
 $ debug=true node index.js
 ```
 
-Now you can open graphiql (graphical) in your browser with `http://localhost:4000/graphql` and you can run the commands below.
+Now you can open graphiql (graphical) in your browser with [http://localhost:4000/graphql](http://localhost:4000/graphql) and you can run the commands below.
 
 
 ## graphql API

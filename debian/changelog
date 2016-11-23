@@ -1,0 +1,5 @@
+bit-bundler-service (0.0.0-1) xenial; urgency=medium
+
+  * Initial release
+
+ -- Jay R. Wren <jrwren@xmtp.net>  Wed, 23 Nov 2016 14:16:59 -0500

@@ -1,0 +1,15 @@
+Source: bit-bundler-service
+Section: utils
+Priority: optional
+Maintainer: Jay R. Wren <jrwren@xmtp.net>
+Build-Depends: debhelper (>=9), nodejs
+Standards-Version: 3.9.6
+Homepage: https://github.com/MiguelCastillo/bit-bundler-service
+#Vcs-Git: git://anonscm.debian.org/collab-maint/bit-bundler-service.git
+#Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/bit-bundler-service.git
+
+Package: bit-bundler-service
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, nodejs
+Description: bit-bundler service with graphql interface
+ The service allows you to specify a list of npm modules, optionally with specific versions, and bundle them. The bundles are minified and generated along with a sourcemap file.

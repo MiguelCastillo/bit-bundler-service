@@ -1,7 +1,11 @@
-const express = require('express');
-const graphqlHTTP = require('express-graphql');
-const bundlerSchema = require('./schemas/bundler');
-const BundlerService = require('./services/Bundler');
+const express = require("express");
+const graphqlHTTP = require("express-graphql");
+const bundlerSchema = require("./schemas/bundler");
+const BundlerService = require("./services/Bundler");
+const repositoryStorage = require("./repository/storage");
+const nedbAdapter = require("./repository/connectors/nedb");
+
+repositoryStorage.setProvider(new nedbAdapter());
 
 // The root provides the top-level API endpoints
 var root = {
@@ -13,8 +17,8 @@ var root = {
 const app = express();
 
 app
-  .use(express.static('cache'))
-  .use('/graphql', graphqlHTTP({
+  .use(express.static("cache"))
+  .use("/graphql", graphqlHTTP({
     schema: bundlerSchema,
     graphiql: process.env.debug,
     rootValue: root

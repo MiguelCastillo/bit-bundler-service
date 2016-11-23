@@ -8,8 +8,8 @@ const extractsm = require("bit-bundler-extractsm");
 const path = require("path");
 const crypto = require("crypto");
 const mkdirp = require("mkdirp");
-const npmRegistry = require("../registries/npm");
-const repositoryStorage = require("../repository/storage");
+const registry = require("../registries/provider");
+const storage = require("../storage/provider");
 
 var pending = {};
 
@@ -33,7 +33,7 @@ module.exports = class Bundler {
   }
 
   getBundle({id}) {
-    var repository = repositoryStorage.getProvider();
+    var repository = storage.getProvider();
 
     if (pending[id]) {
       return pending[id].then(() => repository.getItem(id));
@@ -44,7 +44,7 @@ module.exports = class Bundler {
 }
 
 function installPackages(options) {
-  return (packages) => npmRegistry.install(packages, options);
+  return (packages) => registry.getProvider().install(packages, options);
 }
 
 function createBundle(options) {
@@ -78,7 +78,7 @@ function createBundle(options) {
 
 function cacheBundle(id) {
   return (bundlerContext) => {
-    var repository = repositoryStorage.getProvider();
+    var repository = storage.getProvider();
     var bundle = bundlerContext.bundle.content;
     var sourcemap = bundlerContext.bundle.sourcemap;
     var hash = buildHash(bundle);

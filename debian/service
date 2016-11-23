@@ -1,0 +1,10 @@
+[Unit]
+Description=bit-bundler-service
+
+[Service]
+Type=simple
+Restart=on-failure
+User=bit-bundler-service
+Group=bit-bundler-service
+WorkingDirectory=/usr/share/bit-bundler-service
+ExecStart=/usr/bin/nodejs /usr/share/bit-bundler-service/index.js

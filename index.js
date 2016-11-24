@@ -7,19 +7,12 @@ const storage = require("./storage/provider");
 const registry = require("./registries/provider");
 
 // Configure storage provider for caching bundles
-const StorageProvider = require("./storage/connectors/" + (process.env.storage || "nedb"));
+const StorageProvider = require("./storage/connectors/" + (process.env.BUNDLER_STORAGE || "nedb"));
 storage.setProvider(new StorageProvider());
 
 // Configure registry provider to pull npm modules with.
-const RegistryProvider = require("./registries/installers/" + (process.env.installer || "yarn"));
+const RegistryProvider = require("./registries/installers/" + (process.env.BUNDLER_INSTALLER || "yarn"));
 registry.setProvider(new RegistryProvider());
-
-// The root provides the top-level API endpoints
-var root = {
-  bundler: function (options) {
-    return new BundlerService(options);
-  }
-}
 
 const app = express();
 
@@ -27,8 +20,12 @@ app
   .use(express.static("cache"))
   .use("/graphql", graphqlHTTP({
     schema: bundlerSchema,
-    graphiql: process.env.debug,
-    rootValue: root
+    graphiql: process.env.DEBUG,
+    rootValue: {
+      bundler: function (options) {
+        return new BundlerService(options);
+      }
+    }
   }));
 
-app.listen(4000);
+app.listen(process.env.PORT || 4000);

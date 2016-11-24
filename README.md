@@ -13,6 +13,24 @@ Some of the goals are to:
 
 > This is just an experiment for integrating graphql with bit-bundler.
 
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!--   *generated with [DocToc](https://github.com/thlorenz/doctoc)* -->
+
+- [Usage](#usage)
+  - [requirements](#requirements)
+  - [Install](#install)
+  - [Start server with default values](#start-server-with-default-values)
+  - [options](#options)
+    - [DEBUG](#debug)
+    - [PORT](#port)
+  - [Running the service with graphiql enabled](#running-the-service-with-graphiql-enabled)
+  - [graphql API](#graphql-api)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
 # Usage
 
 ## requirements
@@ -26,6 +44,31 @@ Some of the goals are to:
 $ git clone https://github.com/MiguelCastillo/bit-bundler-service.git
 $ cd bit-bundler-service
 $ npm install
+```
+
+## Start server with default values
+
+```
+$ npm start
+```
+
+
+## options
+
+### DEBUG
+
+Flag to enable graphiql.
+
+```
+$ DEBUG=true node index.js
+```
+
+### PORT
+
+Port to be used for starting the webserver
+
+```
+$ PORT=2015 node index.js
 ```
 
 ## Running the service with graphiql enabled

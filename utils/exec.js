@@ -1,4 +1,4 @@
-const spawn = require('child_process').spawn;
+const spawn = require("child_process").spawn;
 
 module.exports = function execCommand(name, args, options) {
   var result = "";
@@ -12,7 +12,7 @@ module.exports = function execCommand(name, args, options) {
     });
 
     proc.stderr.on("data", function(err) {
-      var cmdArgs = args ? args.join(" ") : ""
+      var cmdArgs = args ? args.join(" ") : "";
       console.error(`Error executing: ${name} ${cmdArgs}`);
       console.error(err);
     });

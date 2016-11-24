@@ -41,7 +41,7 @@ module.exports = class Bundler {
 
     return repository.getItem(id);
   }
-}
+};
 
 function installPackages(options) {
   return (packages) => registry.getProvider().install(packages, options);
@@ -49,7 +49,7 @@ function installPackages(options) {
 
 function createBundle(options) {
   return (packages) => {
-    var packageNames = packages.map((package) => package.name);
+    var packageNames = packages.map((pkg) => pkg.name);
 
     return Bitbundler.bundle({
         cwd: options.cwd,
@@ -95,7 +95,7 @@ function cacheBundle(id) {
   };
 }
 
-function notifyListeners(id) {
+function notifyListeners() {
   return (result) => {
     return result;
   };

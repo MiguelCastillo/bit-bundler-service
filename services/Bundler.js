@@ -8,6 +8,7 @@ const extractsm = require("bit-bundler-extractsm");
 const path = require("path");
 const crypto = require("crypto");
 const mkdirp = require("mkdirp");
+const reportError = require("../utils/reportError");
 const registry = require("../registries/provider");
 const storage = require("../storage/provider");
 
@@ -26,7 +27,8 @@ module.exports = class Bundler {
         .then(installPackages({ id, cwd: targetDir }))
         .then(createBundle({ id, cwd: targetDir }))
         .then(cacheBundle(id))
-        .then(notifyListeners(id));
+        .then(notifyListeners(id))
+        .then(result => result, reportError);
     }
 
     return id;

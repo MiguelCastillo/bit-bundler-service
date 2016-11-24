@@ -82,7 +82,7 @@ Now you can open graphiql (graphical) in your browser with [http://localhost:400
 
 ## graphql API
 
-Query to create a bundle
+Query to create a bundle - [link](http://localhost:4000/graphql?query=query%20bundler(%24modules%3A%20%5BModule%5D)%20%7B%0A%20%20bundler%20%7B%0A%20%20%20%20createBundle(modules%3A%20%24modules)%0A%20%20%7D%0A%7D%0A&variables=%7B%0A%20%20%22modules%22%3A%20%5B%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%22name%22%3A%20%22spromise%22%2C%0A%20%20%20%20%20%20%22version%22%3A%20%22%5E1.0.0%22%0A%20%20%20%20%7D%0A%20%20%5D%0A%7D)
 
 ``` javascript
 query bundler($modules: [Module]) {
@@ -117,7 +117,7 @@ Response with the ID you use for reading the bundle
 }
 ```
 
-Reading the bundle using the ID from the `createBundle` response.
+Reading the bundle using the ID from the `createBundle` response. [link](http://localhost:4000/graphql?variables=&query=query%20getBundle%20%7B%0A%20%20bundler%20%7B%0A%20%20%20%20getBundle(id%3A%20%22e91671086147d525a5887479b9ad6bfd02f0d1ad%22)%20%7B%0A%20%20%20%20%20%20hash%0A%20%20%20%20%20%20bundle%0A%20%20%20%20%20%20sourcemap%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D%0A&operationName=getBundle)
 
 ``` javascript
 query getBundle {

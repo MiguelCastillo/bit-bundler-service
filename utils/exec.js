@@ -12,7 +12,8 @@ module.exports = function execCommand(name, args, options) {
     });
 
     proc.stderr.on("data", function(err) {
-      console.error("Error executing: " + name);
+      var cmdArgs = args ? args.join(" ") : ""
+      console.error(`Error executing: ${name} ${cmdArgs}`);
       console.error(err);
     });
 

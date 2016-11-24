@@ -2,29 +2,26 @@ const spawn = require('child_process').spawn;
 
 module.exports = function execCommand(name, args, options) {
   var result = "";
-  var checkdeps = spawn(name, args, options);
-  checkdeps.stdout.setEncoding("utf8");
-  checkdeps.stderr.setEncoding("utf8");
+  var proc = spawn(name, args, options);
+  proc.stdout.setEncoding("utf8");
+  proc.stderr.setEncoding("utf8");
 
   return new Promise(function(resolve, reject) {
-    checkdeps.stdout.on("data", function(data) {
+    proc.stdout.on("data", function(data) {
       result += data;
     });
 
-    checkdeps.stderr.on("data", function(err) {
+    proc.stderr.on("data", function(err) {
+      console.error("Error executing: " + name);
       console.error(err);
     });
 
-    checkdeps.on("close", function(code) {
+    proc.on("close", function(code) {
       if (code !== 0) {
         reject(code);
       }
-
-      if (result) {
-        resolve(result);
-      }
       else {
-        resolve();
+        resolve(result);
       }
     });
   });

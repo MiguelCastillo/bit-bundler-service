@@ -21,7 +21,7 @@ TGT=$(CURDIR)/debian/bit-bundler-service
 override_dh_auto_install:
 	mkdir -p $(TGT)/usr/share/bit-bundler-service
 	env
-	find .  -maxdepth 1 \! -name debian -a \! -name .git -a \! -name . -exec \
+	find .  -maxdepth 1 \! -name debian -a \! -name .git -a \! -name . -a \! -name .bundle-cache.json -a \! -name cache -exec \
 		cp -a {} $(TGT)/usr/share/bit-bundler-service/ \;
 
 

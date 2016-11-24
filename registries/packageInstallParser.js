@@ -1,8 +1,8 @@
-module.exports = function packageInstallParser(packages) {
-  return packages
-    .map((package) => {
-      return package.version ?
-        [package.name, package.version].join('@') :
-        package.name;
+module.exports = function packageInstallParser(pkgs) {
+  return pkgs
+    .map((result) => {
+      return result.version ?
+        [result.name, result.version].join("@") :
+        result.name;
     });
 };

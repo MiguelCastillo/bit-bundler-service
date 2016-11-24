@@ -11,4 +11,4 @@ function getProvider() {
 module.exports = {
   setProvider,
   getProvider
-}
+};

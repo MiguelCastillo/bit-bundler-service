@@ -28,7 +28,7 @@ class nedbAdapter {
 function resultHandler(resolve, reject) {
   return function(err, ...args) {
     if (err) {
-      reject(reject);
+      reject(err);
     }
     else {
       resolve(args);

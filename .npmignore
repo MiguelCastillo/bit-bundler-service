@@ -1,0 +1,6 @@
+debian
+cache
+.bundler-cache.json
+.eslintrc.json
+.travis.yml
+.gitignore

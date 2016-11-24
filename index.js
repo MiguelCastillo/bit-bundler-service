@@ -11,7 +11,7 @@ const StorageProvider = require("./storage/connectors/" + (process.env.storage |
 storage.setProvider(new StorageProvider());
 
 // Configure registry provider to pull npm modules with.
-const RegistryProvider = require("./registries/providers/" + (process.env.registry || "npm"));
+const RegistryProvider = require("./registries/installers/" + (process.env.installer || "yarn"));
 registry.setProvider(new RegistryProvider());
 
 // The root provides the top-level API endpoints

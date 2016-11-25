@@ -1,6 +1,7 @@
 debian
 cache
-.bundler-cache.json
+.bundle-cache.json
+.bundler-cache
 .eslintrc.json
 .travis.yml
 .gitignore

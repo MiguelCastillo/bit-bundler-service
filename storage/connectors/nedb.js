@@ -4,7 +4,7 @@ class nedbAdapter {
   constructor(options) {
     this._nedb = new nedb(
       Object.assign({
-        filename: '.bundle-cache.json',
+        filename: '.bundler-cache',
         autoload: true
       }, options)
     )

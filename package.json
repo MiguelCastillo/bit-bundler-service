@@ -35,6 +35,6 @@
     "yarn": "^0.19.1"
   },
   "devDependencies": {
-    "eslint": "^3.10.2"
+    "eslint": "^3.14.1"
   }
 }

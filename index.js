@@ -15,12 +15,14 @@ const RegistryProvider = require("./registries/installers/" + (process.env.BUNDL
 registry.setProvider(new RegistryProvider());
 
 const app = express();
+const port = process.env.PORT || 4000;
+const debug = !!process.env.DEBUG;
 
 app
   .use(express.static("cache"))
   .use("/graphql", graphqlHTTP({
     schema: bundlerSchema,
-    graphiql: process.env.DEBUG,
+    graphiql: debug,
     rootValue: {
       bundler: function (options) {
         return new BundlerService(options);
@@ -28,4 +30,6 @@ app
     }
   }));
 
-app.listen(process.env.PORT || 4000);
+app.listen(port);
+
+console.log("Listening on", port);

@@ -23,7 +23,7 @@
   "dependencies": {
     "bit-bundler": "^7.0.0",
     "bit-bundler-extractsm": "^1.0.1",
-    "bit-bundler-minifyjs": "^1.0.4",
+    "bit-bundler-minifyjs": "^2.0.0",
     "bit-loader-builtins": "^2.0.0",
     "bit-loader-extensions": "^1.0.1",
     "bit-loader-js": "^1.2.2",

@@ -1,10 +1,4 @@
 const Bitbundler = require("bit-bundler");
-const jsPlugin = require("bit-loader-js");
-const extensionsPlugin = require("bit-loader-extensions");
-const builtinsPlugin = require("bit-loader-builtins");
-const minifyjs = require("bit-bundler-minifyjs");
-const extractsm = require("bit-bundler-extractsm");
-
 const path = require("path");
 const crypto = require("crypto");
 const mkdirp = require("mkdirp");
@@ -62,16 +56,15 @@ function createBundle(options) {
         loader: {
           baseUrl: options.cwd,
           plugins: [
-            extensionsPlugin(["js", "json"]),
-            jsPlugin({ extensions: ["js", "json"] }),
-            builtinsPlugin()
+            ["bit-loader-extensions", ["js", "json"]],
+            ["bit-loader-js", { extensions: ["js", "json"] }],
+            ["bit-loader-builtins"]
           ]
         },
         bundler: {
           exportNames: true,
           plugins: [
-            minifyjs(),
-            extractsm()
+            "bit-bundler-minifyjs"
           ]
         }
     });

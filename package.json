@@ -31,7 +31,7 @@
     "graphql": "^0.11.2",
     "mkdirp": "^0.5.1",
     "nedb": "^1.8.0",
-    "yarn": "^0.27.5"
+    "yarn": "^1.0.1"
   },
   "devDependencies": {
     "eslint": "^4.5.0"

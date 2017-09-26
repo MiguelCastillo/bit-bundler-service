@@ -1,4 +1,5 @@
 const Bitbundler = require("bit-bundler");
+const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 const mkdirp = require("mkdirp");
@@ -64,7 +65,8 @@ function createBundle(options) {
         bundler: {
           exportNames: true,
           plugins: [
-            "bit-bundler-minifyjs"
+            "bit-bundler-minifyjs",
+            "bit-bundler-extractsm"
           ]
         }
     });
@@ -75,7 +77,7 @@ function cacheBundle(id) {
   return (bundlerContext) => {
     var repository = storage.getProvider();
     var bundle = bundlerContext.bundle.content;
-    var sourcemap = bundlerContext.bundle.sourcemap;
+    var sourcemap = fs.readFileSync(bundlerContext.bundle.dest + ".map").toString();
     var hash = buildHash(bundle);
 
     return repository

@@ -33,7 +33,7 @@
     "mkdirp": "^0.5.1",
     "nedb": "^1.8.0",
     "spromise": "^1.0.0",
-    "yarn": "^0.27.5"
+    "yarn": "^1.1.0"
   },
   "devDependencies": {
     "eslint": "^4.7.2"

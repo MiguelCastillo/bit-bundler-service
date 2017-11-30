@@ -1,6 +1,7 @@
 # bit-bundler-service
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/MiguelCastillo/bit-bundler-service.svg)](https://greenkeeper.io/)
+
 [bit-bundler](https://github.com/MiguelCastillo/bit-bundler) web service with a graphql API.
 
 The service allows you to specify a list of npm modules, optionally with specific versions, and bundle them. The bundles are minified and generated along with a sourcemap file.

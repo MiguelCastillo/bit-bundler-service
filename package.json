@@ -30,7 +30,7 @@
     "express": "^4.15.5",
     "express-graphql": "^0.6.11",
     "graphql": "^0.13.0",
-    "mkdirp": "^0.5.1",
+    "mkdirp": "^1.0.2",
     "nedb": "^1.8.0",
     "spromise": "^1.0.0",
     "yarn": "^1.1.0"
